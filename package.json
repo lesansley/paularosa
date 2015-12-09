@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "jshint-stylish": "^2.1.0",
+    "masonry-layout": "^3.3.2",
     "time-grunt": "^1.2.2"
   }
 }
