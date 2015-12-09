@@ -1,0 +1,173 @@
+/* {
+  border: 1px solid red !important;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Tauri';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Tauri Regular'), local('Tauri-Regular'), url(https://fonts.gstatic.com/s/tauri/v4/Yr-ixQVIDcm46HklxMp2fKCWcynf_cDxXwCLxiixG1c.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+a {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tauri';
+}
+
+img {
+    max-width: 100%;
+}
+
+section {
+    background-color: #bf6f88;
+}
+
+header {
+
+
+}
+
+.row {
+    max-width: 100%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-img {
+    border: 2px solid #bf6f88;
+}
+
+.main {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.col-sm-4,
+.col-md-4 {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.logo-holder {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.logo-holder img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-main {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav-main ul {
+    text-align: right;
+    padding-left: 0;
+}
+
+.menu-list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-list li {
+    display: inline;
+    font-size: 1.6vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+.menu-list li a {
+    color: #bf6f88;
+}
+
+.menu-list li a:hover {
+    background-color: #bf6f88;
+    color: white;
+    text-decoration: none;
+}
+
+.mobile-visible {
+    display: none;
+}
+
+.strapline {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    color: #bf6f88;
+    font-size: large;
+}
+
+.main-nav-scrolled {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    left: 0 ;
+    z-index: 999;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-shadow: 0 2px 3px rgba(0,0,0,.4);
+}
+
+.invisible {
+    display: none;
+}
+
+@media only screen and (max-width:768px) {
+    .mobile-visible {
+        display: block;
+    }
+
+    .logo-image {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        max-height: 100%;
+    }
+
+    .row {
+        margin: 0;
+        align-items: flex-end;
+    }
+
+    .image-holder {
+        padding: 0;
+        padding-bottom: 10px;
+    }
+
+    .container-fluid {
+        padding-top: 15px;
+        padding-bottom: 5px;
+    }
+
+    .menu-list {
+        margin-top: 10px;
+    }
+
+    .menu-list li {
+        font-size: large;
+        padding-right: 0;
+        padding-left: 15px;
+    }
+}
