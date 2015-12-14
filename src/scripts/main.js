@@ -7,6 +7,7 @@ var paulaRosa = {
             {label: 'Contact', src: '/contact'}
         ],
         boudoir: [
+            {label: 'Home', src: '/boudoir'},
             {label: 'About', src: '/boudoir/about'},
             {label: 'Blog', src: '/boudoir/blog'},
             {label: 'Prices', src: '/boudoir/prices'},
@@ -14,12 +15,14 @@ var paulaRosa = {
             {label: 'Contact', src: '/contact'}
         ],
         pets: [
+            {label: 'Home', src: '/pets'},
             {label: 'About', src: '/pets/about'},
             {label: 'Prices', src: '/pets/prices'},
             {label: 'FAQs', src: '/pets/faq'},
             {label: 'Contact', src: '/contact'}
         ],
         family: [
+            {label: 'Home', src: '/family'},
             {label: 'About', src: '/family/about'},
             {label: 'Blog', src: '/family/blog'},
             {label: 'Prices', src: '/family/prices'},
@@ -27,24 +30,26 @@ var paulaRosa = {
             {label: 'Contact', src: '/contact'}
         ],
         commercial: [
+            {label: 'Home', src: '/commercial'},
             {label: 'About', src: '/commercial/about'},
             {label: 'News', src: '/commercial/news'},
             {label: 'FAQs', src: '/commercial/faq'},
             {label: 'Contact', src: '/contact'}
         ]
     },
+    // All images need to be 768x576
     images: {
         boudoir: [
-            {name: 'folio', src: '', alt: ''}
+            {name: 'folio', src: 'images/boudoir-1.jpg', title: 'Boudoir', descriptor: 'Folio of boudoir images draped with a pearl necklace'}
         ],
         pets: [
-            {name: 'great-dane', src: '', alt: ''}
+            {name: 'great-dane', src: 'images/pets-1.jpg', title: 'Paws & Hoofs', descriptor: 'Spotted Great Dane lying and looking directly at the camera'}
         ],
         family: [
-            {name: 'brothers', src: '', alt: ''}
+            {name: 'brothers', src: 'images/family-1.jpg', title: 'Family', descriptor: 'Family jumping in the air'}
         ],
         commercial: [
-            {name: 'great dane', src: '', alt: ''}
+            {name: 'great dane', src: 'images/commercial-1.jpg', title: 'Commercial', descriptor: 'Interior photo of an open living space'}
         ]
     }
 };
@@ -67,17 +72,42 @@ function getAll(param) {
 function getGenre(param, genre) {
 
 }
+
 /******************VIEW******************/
 
-function loadImages() {
+function loadSelectionImages() {
     imageCollection = getAll('images');
+    pageCollection = getAll('pages');
     if(!imageCollection) {
         console.log('ERROR: No such property exits')
     }
-};
+    else {
+        var imageWrapper = $('.main-image-wrapper'),
+            formattedHTML = '',
+            unformattedHTML = '<div class="col-xs-12 image-holder"><a href="%link%"><img class="section-img" src="%src%" alt="%descriptor%"><span class="genre-descriptor">%title%</span></a></div>';
+        // Loop through the genres
+        for(var genre in imageCollection) {
+            // Randomly select an image to display from each genre
+            index = getRandomInt(0, imageCollection[genre].length);
+            var HTMLelement = unformattedHTML.replace('%link%', pageCollection[genre].home);
+            HTMLelement = HTMLelement.replace('%src%', imageCollection[genre][index].src);
+            HTMLelement = HTMLelement.replace('%title%', imageCollection[genre][index].title);
+            HTMLelement = HTMLelement.replace('%descriptor%', imageCollection[genre][index].descriptor);
+
+            formattedHTML = formattedHTML + HTMLelement;
+        }
+        // Inject the HTML into the DOM
+        imageWrapper.append(formattedHTML);
+    }
+}
+
+//generates a random integer based on the range provided
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 function transformScale(elem, x, y) {
-    $(elem).css({
+    elem.css({
         'transform': 'scale(' + x + ' ,' + y + ')',
         MozTransform: 'scale(' + x + ' ,' + y + ')',
         WebkitTransform: 'scale(' + x + ' ,' + y + ')',
@@ -110,14 +140,15 @@ function setNavBar() {
                 topBar.height(menuBarHeight); // Set the height of the navigation bar back to normal
                 var scaleFactor = 1 / ((menuBarHeight + (scroll * correctionFactor)) / menuBarHeight); // Set the scaling factor for the logo
                 transformScale(logoImage, scaleFactor, scaleFactor);
-                var updatedLogoPadding = Math.round(logoPadding-(logoPadding / scrollStick) * scroll);
+                var updatedLogoPadding = logoPadding-(logoPadding / scrollStick) * scroll;
                 logoImage.css({'padding-bottom': updatedLogoPadding + 'px'});
             }
             else {
                 // Scrolling page up
-                var updatedLogoPadding = Math.round(logoPadding - (logoPadding / scrollStick) * scroll)
+                var updatedLogoPadding = logoPadding - (logoPadding / scrollStick) * scroll
                 var scaleFactor = (menuBarHeight - (scroll * correctionFactor)) / menuBarHeight; //
                 logoImage.css({'padding-bottom': updatedLogoPadding + 'px'});
+                $(logoImage)
                 transformScale(logoImage, scaleFactor, scaleFactor);
             }
         }
@@ -133,7 +164,7 @@ function setNavBar() {
 }
 
 $(function() {
-    loadImages();
+    loadSelectionImages();
     setNavBar();
 
 });
